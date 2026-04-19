@@ -4,7 +4,7 @@ TARGET = clox
 
 all: $(TARGET)
 
-$(TARGET): *.c
+$(TARGET): *.c *.h
 	$(CC) $(CFLAGS) *.c -o $(TARGET)
 
 debug: all
@@ -13,3 +13,6 @@ debug: all
 clean:
 	rm -f $(TARGET)
 	rm -rf clox.dSYM
+
+run: all
+	./$(TARGET)
