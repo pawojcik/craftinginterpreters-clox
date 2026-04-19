@@ -11,7 +11,7 @@ int main(int argc, const char* argv[]) {
     writeChunk(&chunk, OP_CONSTANT, 123);
     writeChunk(&chunk, constant, 123);
     writeChunk(&chunk, OP_RETURN, 123);
-    dissasembleChunk(&chunk, "test chunk");
+    // dissasembleChunk(&chunk, "test chunk");
     interpret(&chunk);
     // do we really need this? the program will exit anyway
     freeVM();
