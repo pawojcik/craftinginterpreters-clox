@@ -19,8 +19,8 @@ all: $(TARGET)
 $(TARGET): $(OBJ_DIR)/main.o $(PROJECT_OBJS) $(SRC_DIR)/*.h
 	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o $(PROJECT_OBJS) -o $(TARGET)
 
-debug: all
-	leaks -atExit -- ./$(TARGET)
+debug: CFLAGS += -g -O0 -DDEBUG
+debug: clean $(TARGET)
 
 $(BUILD_DIR) $(OBJ_DIR):
 	mkdir -p $@
@@ -54,3 +54,5 @@ clean:
 
 run: all
 	./$(TARGET)
+
+.PHONY: all debug test clean run
