@@ -1,20 +1,19 @@
-#include <assert.h>
-// #include <stdio.h>
+#include "harness.h"
 
 #include "../scanner.h"
 
-void should_return_eof_for_empty_source() {
+TEST(should_return_eof_for_empty_source) {
     initScanner("");
     assert(scanToken().type == TOKEN_EOF);
 }
 
-void should_handle_whitespace() {
+TEST(should_handle_whitespace) {
     initScanner("  \t\n! \n\t\r");
     assert(scanToken().type == TOKEN_BANG);
     assert(scanToken().type == TOKEN_EOF);
 }
 
-void should_hadle_all_single_char_tokens() {
+TEST(should_hadle_all_single_char_tokens) {
     initScanner("(){},.-+/*=!<>");
     assert(scanToken().type == TOKEN_LEFT_PAREN);
     assert(scanToken().type == TOKEN_RIGHT_PAREN);
@@ -32,7 +31,7 @@ void should_hadle_all_single_char_tokens() {
     assert(scanToken().type == TOKEN_GREATER);
 }
 
-void should_handle_all_double_tokens() {
+TEST(should_handle_all_double_tokens) {
     initScanner("!===<=>=");
     assert(scanToken().type == TOKEN_BANG_EQUAL);
     assert(scanToken().type == TOKEN_EQUAL_EQUAL);
@@ -40,7 +39,7 @@ void should_handle_all_double_tokens() {
     assert(scanToken().type == TOKEN_GREATER_EQUAL);
 }
 
-void should_handle_numbers() {
+TEST(should_handle_numbers) {
     initScanner("123 123.123");
     Token t = scanToken();
     assert(t.type == TOKEN_NUMBER);
@@ -49,13 +48,3 @@ void should_handle_numbers() {
     assert(t.type == TOKEN_NUMBER);
     assert(t.length == 7);
 }
-
-int main() {
-    should_return_eof_for_empty_source();
-    should_hadle_all_single_char_tokens();
-    should_handle_all_double_tokens();
-    should_handle_whitespace();
-    should_handle_numbers();
-    return 0;
-}
-

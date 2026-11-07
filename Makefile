@@ -28,8 +28,8 @@ $(BUILD_DIR) $(OBJ_DIR):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%: $(TEST_DIR)/%.c $(PROJECT_OBJS) | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $^ -o $@
+$(BUILD_DIR)/%: $(TEST_DIR)/%.c $(TEST_DIR)/harness.h $(PROJECT_OBJS) | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(filter %.c %.o,$^) -o $@
 
 test: $(TEST_BINS)
 	@echo "=================================================="
