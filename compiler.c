@@ -212,6 +212,8 @@ ParseRule rules[] = {
     [TOKEN_WHILE] = {NULL, NULL, PREC_NONE},
     [TOKEN_ERROR] = {NULL, NULL, PREC_NONE},
     [TOKEN_EOF] = {NULL, NULL, PREC_NONE},
+    [TOKEN_QUESTION] = {NULL, NULL, PREC_NONE},
+    [TOKEN_COLON] = {NULL, NULL, PREC_NONE},
 };
 
 static void parsePrecedence(Precedence precedence) {
